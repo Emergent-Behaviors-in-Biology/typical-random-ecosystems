@@ -1,7 +1,7 @@
 # Numerical Simulations in Typical Random Ecosystems
 ## Getting Started
 
-This implementation requires [Eco_functions](https://github.com/Wenping-Cui/Eco_functions). Download it and install with
+This implementation requires [Eco_functions](https://github.com/Wenping-Cui/Eco_functions). For a new version, you can download it and install with
 ``` bash
 $ pip install e .
 ```
