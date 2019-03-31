@@ -59,6 +59,7 @@ parameters['loop_size']=50;
 parameters['t0']=0;
 parameters['t1']=500;
 parameters['Nt']=1000;
+# load crossfeeding matrix
 filename='crossfeeding_D.pkl'
 with open(filename, 'rb') as f:
     D = pickle.load(f)

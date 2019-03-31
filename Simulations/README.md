@@ -25,4 +25,5 @@ $ python main.py --B 'identity' --C 'gaussian'  --d 'quadratic'  --s 'ODE'
 | --B        |     Type of Engineered matrix      |  'gaussian', 'uniform'，‘binomial’ |
 | --C     | Type of Noise       | 'identity', 'null', 'circulant' and 'block'     |
 | --d   | Type of Resource dynamics     | 'quadratic', 'linear' ,'crossfeeding'|
+| --s   | Type of Solver     | 'CVXOPT', 'ODE'|
 | epsilon  | Amplitue of noise    | sigc, b, pc |
