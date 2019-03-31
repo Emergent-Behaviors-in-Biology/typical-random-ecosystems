@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on 03/31/2019
+
+@author: Wenping Cui
+"""
 import numpy as np
 from scipy.integrate import odeint
 import pdb
@@ -138,7 +144,7 @@ class Ecology_simulation(object):
         p1 = N.dot(p0)
         resource_production = D.dot(p1)
         species = N*growth*((DcE.dot(R))-costs)
-        resources =R*(R0-R)*tau_inv - p1 + resource_production
+        resources =(R0-R)*tau_inv - p1 + resource_production
         output = np.concatenate((resources, species));
         return output
 

@@ -6,17 +6,17 @@ This implementation requires [Eco_functions](https://github.com/Wenping-Cui/Eco_
 $ pip install e .
 ```
 
-## Running without Crossfeeding
+## Running with Convex Optimization Solver
 
 ```bash
-$ python Main_simulation.py --B 'identity' --C 'gaussian'  --d 'quadratic' 
+$ python main.py --B 'identity' --C 'gaussian'  --d 'quadratic'  --s 'CVXOPT'
 
 ```
 
-## Running with Crossfeeding
+## Running with ODE solver
 
 ```bash
-$ python Simulations_Crossfeeding.py --B  'identity' --C 'binomial'   --d 'quadratic' 
+$ python main.py --B 'identity' --C 'gaussian'  --d 'quadratic'  --s 'ODE'
 ```
 ### Arguments
 
@@ -24,5 +24,5 @@ $ python Simulations_Crossfeeding.py --B  'identity' --C 'binomial'   --d 'quadr
 | :---         |     :---      |          :--- |
 | --B        |     Type of Engineered matrix      |  'gaussian', 'uniform'，‘binomial’ |
 | --C     | Type of Noise       | 'identity', 'null', 'circulant' and 'block'     |
-| --d   | Type of Resource dynamics     | 'quadratic', 'linear' |
-| epsilon  | Amplitue of noise    | b, pc or sigc |
+| --d   | Type of Resource dynamics     | 'quadratic', 'linear' ,'crossfeeding'|
+| epsilon  | Amplitue of noise    | sigc, b, pc |

@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu 03/31/2019
+
+@author: Wenping Cui
+"""
 import time
 import pandas as pd
 import matplotlib
