@@ -391,6 +391,7 @@ class Cavity_simulation(object):
 	        k=0
 	        ncyc=0
 	        Delta = 1
+	        Delta_old=1
 	        failed = 0
 	        R0t=K
 	        while np.linalg.norm(Rf_old - Rf) > tol and k < max_iters:
