@@ -5,9 +5,15 @@ This implementation requires [Eco_functions](https://github.com/Wenping-Cui/Eco_
 ``` bash
 $ pip install e .
 ```
+To run the convex optimization solver, please install [CVXPY](https://www.cvxpy.org/) and [CVXOPT](https://cvxopt.org/) by
+``` bash
+$ pip install cvxpy
+```
+``` bash
+$ pip install cvxopt
+```
 
 ## Running with Convex Optimization Solver
-
 ```bash
 $ python main.py --B 'identity' --C 'gaussian'  --d 'quadratic'  --s 'CVXOPT'
 
