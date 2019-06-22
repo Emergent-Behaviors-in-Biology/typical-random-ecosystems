@@ -19,7 +19,7 @@ $ python main.py --B 'identity' --C 'gaussian'  --d 'quadratic'  --s 'CVXOPT'
 
 ```
 ### Run Time
-For 40 data points at different sigc, averaged from 4000 samples, the run time is about 2 hours with 28 cores in the [SCC cluster](https://www.bu.edu/tech/support/research/computing-resources/scc/).
+With 28 cores in the [SCC cluster](https://www.bu.edu/tech/support/research/computing-resources/scc/), the estimated run time is about 2 hours for 40 data points at different sigc, averaged from 4000 samples.
 
 ## Running with ODE solver
 
