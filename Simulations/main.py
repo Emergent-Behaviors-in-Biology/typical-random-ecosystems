@@ -158,6 +158,7 @@ pool.join()
 results_df = pd.concat(results)
 with open(file_name, 'a') as f:
 		results_df.to_csv(f, index=False,encoding='utf-8')
+print('finish time:', time.time()-start_time)
 
 
 
