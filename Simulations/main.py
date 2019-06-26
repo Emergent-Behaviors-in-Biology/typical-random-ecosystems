@@ -37,8 +37,7 @@ C_type = args.C   #'gaussian',‘binomial'
 Simulation_type=args.s # 'ODE', 'CVXOPT'
 
 start_time = time.time()
-Pool_num=28
-file_name='Community_'+C_type+'_'+B_type +'_'+dynamics+'_'+Simulation_type+'_log.csv'
+file_name='Community_'+C_type+'_'+B_type +'_'+dynamics+'_'+Simulation_type+'_log_RAM.csv'
 
 parameters = {}
 parameters['sample_size']=10;
@@ -144,14 +143,14 @@ jobs=[];
 for S in [100]:
 	parameters['S'] =S;
 	parameters['M'] =S
-	parameters['sample_size']=int(100*4000/S);
+	parameters['sample_size']=int(100*10/S);
 	#for mu in np.append(0,np.logspace(-3.0, 2., num=10)):
 	#for mu in [0, 0.6, 1.0, 3.0, 5.0, 8.0, 10.0]:
-	mu=1.0
 	for epsilon in np.logspace(-6.0,3., num=40):  
 		#for epsilon in np.linspace(0.0, 2.0, num=201): 
+			mu = epsilon*3
 			jobs.append([parameters['sample_size'],parameters['S'],parameters['M'],parameters['K'],parameters['sigma_K'], parameters['mu'], parameters['sigma_c'],parameters['m'],parameters['sigma_m'],parameters['loop_size'],parameters['t0'],parameters['t1'],parameters['Nt']  ,epsilon, mu, D])
-pool = Pool(processes=Pool_num)
+pool = Pool()
 results = pool.map(func_parallel, jobs)
 pool.close()
 pool.join()
