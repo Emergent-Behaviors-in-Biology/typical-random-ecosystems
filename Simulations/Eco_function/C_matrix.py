@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on 03/31/2019
-
-@author: Wenping Cui
-"""
 import numpy as np
 from past.builtins import xrange
 from scipy.linalg import block_diag
