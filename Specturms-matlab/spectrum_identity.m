@@ -7,9 +7,12 @@ close all;
 N=100;
 Sample_size=1000;
 sigc=1.5;
-Sig=[0.01,0.1, 0.3, 0.7, 1.0, 5.]; % c is obtained from numerical simulations
-C=[0.96,0.89,0.96,0.97,0.96,0.5];
+Sig=[0.01,0.1, 0.3, 0.7, 1.0, 10.]; % c is obtained from numerical simulations
+C=[1.,1.,1., 0.94, 0.92, 0.84];
 for i=1:6
+    if i==6
+        Sample_size=100000;
+    end
     sigc=Sig(i);
     c=C(i);
     L=zeros(Sample_size,N*c);
@@ -24,8 +27,11 @@ for i=1:6
     end
 Nbins=100;
 if i==6
-    Nbins=1000;
+    Nbins=10000;
     [Y,X]=hist(L,linspace(0,b,Nbins));
+elseif i==4
+    Nbins=1000;
+    [Y,X]=hist(L,linspace(0,5,Nbins));
 else 
     [Y,X]=hist(L,Nbins);
 end
@@ -48,10 +54,10 @@ if sigc==1.0
     axis([0 10 0 0.07]);
     %legend(h2,'Marchenko-Pastur distribution y=1.0','FontSize',20)
     title(strcat('\sigma_c=',num2str(sigc)),'FontSize',60);
-elseif sigc==5.0
+elseif i==6
     h2=plot(lambda,F,'r','LineWidth',2);
     hold off;
-    axis([0 10 0 0.005]);
+    axis([0 10 0 0.001]);
     %legend(h2,'Marchenko-Pastur distribution','FontSize',20)
     title(strcat('\sigma_c=',num2str(sigc)),'FontSize',60);
 elseif sigc==0.01
@@ -66,7 +72,7 @@ elseif sigc==0.3
 elseif sigc==0.7
     h2=plot(lambda,F,'r','LineWidth',2);
     hold off;
-    axis([0 10 0 0.06]);
+    axis([0 5 0 0.016]);
     legend(h2,'Marchenko-Pastur distribution','FontSize',20)
     title(strcat("Regime B ",'\sigma_c=',num2str(sigc)),'FontSize',20);
     title(strcat('\sigma_c=',num2str(sigc)),'FontSize',60);
