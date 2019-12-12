@@ -7,18 +7,29 @@ close all;
 N=100;
 Sample_size=1000;
 sigc=1.5;
-Sig=[0.01,0.1, 0.3, 0.7, 1.0, 10.]; % c is obtained from numerical simulations
-C=[1.,1.,1., 0.94, 0.92, 0.84];
+Sig=[0.01,0.1, 0.5, 0.7, 1.0, 5.]; % c is obtained from numerical simulations
+
+C1=[1.,1., 0.90, 0.77, 0.63, 0.49];
+C2=[1.,1., 0.93, 0.82, 0.69, 0.58];
+C2=[1.,1., 1, 1, 1, 1];
 for i=1:6
     if i==6
-        Sample_size=100000;
+        Sample_size=1000;
     end
     sigc=Sig(i);
-    c=C(i);
-    L=zeros(Sample_size,N*c);
+    c1=C1(i);
+    c2=C2(i);
+    L=zeros(Sample_size,N*c1);
     B=eye(N);
     for j=1:Sample_size
-        x=sigc/sqrt(N)*randn(N*c,N)+B(1:N*c,:);
+        x=sigc/sqrt(N)*randn(N,N)+B;
+        c=c1/c2;
+        out1=randperm(N);
+        ri1=out1(1:c1*N);
+        out2=randperm(N);
+        ri2=out2(1:c2*N);
+        x=x(ri1,ri2);
+        s=sigc;
         s=std(x(:))*sqrt(N);
         a=(s^2)*(1-sqrt(c))^2;
         b=(s^2)*(1+sqrt(c))^2;
@@ -57,7 +68,7 @@ if sigc==1.0
 elseif i==6
     h2=plot(lambda,F,'r','LineWidth',2);
     hold off;
-    axis([0 10 0 0.001]);
+    axis([0 10 0 0.002]);
     %legend(h2,'Marchenko-Pastur distribution','FontSize',20)
     title(strcat('\sigma_c=',num2str(sigc)),'FontSize',60);
 elseif sigc==0.01
@@ -66,7 +77,7 @@ elseif sigc==0.01
 elseif sigc==0.1
     axis([0 10 0 0.015]);
     title(strcat('\sigma_c=',num2str(sigc)),'FontSize',60);
-elseif sigc==0.3
+elseif sigc==0.5
     axis([0 10 0 0.018]);
     title(strcat('\sigma_c=',num2str(sigc)),'FontSize',60);
 elseif sigc==0.7
