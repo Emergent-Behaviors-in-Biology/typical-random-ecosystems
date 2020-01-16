@@ -22,14 +22,17 @@ for i=1:6
     L=zeros(Sample_size,N*c1);
     B=eye(N);
     for j=1:Sample_size
+        %gaussian
         x=sigc/sqrt(N)*randn(N,N)+B;
+        % uniform
+        x=sigc*rand(N,N)+B;
         c=c1/c2;
         out1=randperm(N);
         ri1=out1(1:c1*N);
         out2=randperm(N);
         ri2=out2(1:c2*N);
         x=x(ri1,ri2);
-        s=sigc;
+        s=sqrt(sigc^2/12*100);;
         s=std(x(:))*sqrt(N);
         a=(s^2)*(1-sqrt(c))^2;
         b=(s^2)*(1+sqrt(c))^2;

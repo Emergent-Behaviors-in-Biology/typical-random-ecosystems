@@ -39,7 +39,7 @@ class Cavity_simulation(object):
 		self.epsilon=10**(-3)
 		self.epsilon_Metabolic=0
 		self.e=1.0
-	def initialize_random_variable(self,):
+	def initialize_random_variable(self,Initial='Auto'):
 		#################################
 		# RESOURCE PROPERTIES
 		##################################
@@ -93,7 +93,8 @@ class Cavity_simulation(object):
 			self.C= B+np.random.normal(self.mu/self.S, self.epsilon/np.sqrt(self.S), [self.S,self.M])
 		elif self.C_type=='uniform':
 			self.C= B+np.random.uniform(0,self.epsilon, [self.S,self.M])
-
+		if Initial=='Manually':
+			self.C=self.C_det
 		if self.Metabolic_Tradeoff:
 			self.costs=np.sum(self.C, axis=1)
 			if self.Metabolic_Tradeoff_type=='scale':
@@ -146,10 +147,7 @@ class Cavity_simulation(object):
 		self.R_dominator=[]
 		self.sev = np.array([])
 		for step in range(self.sample_size):	
-			if Initial=='Auto':
-				self.sim_pars=self.initialize_random_variable()
-			if Initial=='Manually':
-				self.sim_pars = [self.flag_crossfeeding, self.M, self.S, self.R_ini, self.N_ini,self.T_par, self.C, self.energies, self.tau_inv, self.costs, self.growth, self.Ks]
+			self.sim_pars=self.initialize_random_variable(Initial=Initial)
 			if Simulation_type=='ODE':
 				Model =Ecology_simulation(self.sim_pars)
 				if Dynamics=='linear':
@@ -349,9 +347,7 @@ class Cavity_simulation(object):
 	
 	def Quadratic_programming(self, Initial='Auto'):
 		if Initial=='Auto':
-			self.sim_pars=self.initialize_random_variable()
-		if Initial=='Manually':
-			self.sim_pars = [self.flag_crossfeeding, self.M, self.S, self.R_ini, self.N_ini,self.T_par, self.C, self.energies, self.tau_inv, self.costs, self.growth, self.Ks] 	
+			self.sim_pars=self.initialize_random_variable(Initial=Initial)
 		# Define QP parameters (directly)
 		M = np.identity(self.M)
 		P = np.dot(M.T, M)*self.parameters['tau_inv']
